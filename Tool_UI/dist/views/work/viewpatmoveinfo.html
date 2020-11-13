@@ -1,0 +1,93 @@
+<div class="layui-fluid page-patmove">
+    <fieldset class="layui-elem-field">
+        <legend>患者基本信息跨省迁出查询</legend>
+        <div class="layui-field-box">
+            <div class="layui-form">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">开始日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="date" id="starttime" lay-verify="date"
+                            placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label">结束日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="date" id="endtime" lay-verify="date"
+                            placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" id="btn-querypat-moveout">查询</button>
+                        <button class="layui-btn" id="btn-exportpat-moveout">导出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table id="SyncMoveOutPatInfo" lay-filter="SyncMoveOutPatInfo"></table>
+    </fieldset>
+    <fieldset class="layui-elem-field" style="width: 100%;">   <!--hidden="hidden"-->
+        <legend>患者上挂撤回</legend>
+        <div class="layui-field-box">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">身份证号：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="PatIDCode" placeholder="请输入身份证号" lay-verify="identity"
+                            lay-verType="tips" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" lay-submit
+                            lay-filter="moveInAndOutpatInfoByIDCode">查询</button>
+                    </div>
+                    <label class="layui-form-label">流转编号：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="moveInAndOutId" placeholder="请输入流转编号"
+                            lay-verType="tips" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" id="btn-callbackpat-moveout">回收</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table id="moveInAndOutpatInfo_table" lay-filter="moveInAndOutpatInfo_table"></table>
+    </fieldset>
+    <fieldset class="layui-elem-field" style="width: 98.5%;">
+        <legend>获取正迁入到本省的患者信息</legend>
+        <div class="layui-field-box">
+            <div class="layui-form health-query">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">患者主键</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="moveIN_patinfocd" placeholder="请输入国网主键"
+                            lay-verify="required" lay-verType="tips" autocomplete="off"
+                            class="layui-input">
+                    </div>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" lay-submit lay-filter="moveIn_query">查询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+<script type="text/html" id="gwmoveinpattpl_layer">
+    <div class="basic tool-card-border" style="margin-left: 15px">
+        <form class="layui-form" action="" lay-filter="formTest1">
+            {{# for(var key in d.infoMap){ }}
+            <div class="layui-inline">
+                <label class="layui-form-label">{{ d.infoMap[key] }}</label>
+                <div class="layui-input-inline">
+                    {{# if (null == d.data[key]){ d.data[key]=''} }}
+                    <input type="text" value="{{ d.data[key] }}" class="layui-input" readonly="true" />
+                </div>
+            </div>
+            {{# }; }}
+        </form>
+    </div>
+</script>
+
+
+<script>
+    layui.use('work/viewpatmoveinfo', layui.factory('work/viewpatmoveinfo'));
+</script>

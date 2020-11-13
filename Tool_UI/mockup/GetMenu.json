@@ -1,0 +1,66 @@
+{
+	"code": "1",
+	"data": [{
+			"menuid": "0100",
+			"name": "业务信息维护",
+			"icon": "icon-jigouguanliicon_",
+			"title": "业务信息维护",
+			"list": [{
+				"menuid": "0101",
+				"name": "患者档案业务",
+				"title": "患者档案业务",	
+				"list": [],
+				"jump": "work/viewpatinfo"
+			},{
+				"menuid": "0102",
+				"name": "流转信息查询",
+				"title": "流转信息查询",	
+				"list": [],
+				"jump": "work/viewpatmoveinfo"
+			},
+			{
+				"menuid": "0103",
+				"name": "年审查询",
+				"title": "年审查询",	
+				"list": [],
+				"jump": "work/viewyearinfo"
+			}],
+			"jump": ""
+		}, {				
+			"menuid": "0200",
+			"name": "随访数据清理",
+			"icon":"icon-yonghuguanli",
+			"title": "随访数据清理",
+			"list": [],
+			"jump": "work/cleanfollowup"
+		}, {
+			"menuid": "0300",
+			"name": "国网信息查询",
+			"icon":"icon-xinxitongji",
+			"title": "国网信息查询",
+			"list": [],
+			"jump": "work/gwinfoquery"
+		}, {
+			"menuid": "0400",
+			"name": "国网消息重发",
+			"icon":"icon-yuanchengzhenduan",
+			"title": "国网消息重发",
+			"list": [],
+			"jump": "work/gwmsgresend"
+		}, {
+			"menuid": "0500",
+			"name": "消息实时监控",
+			"icon":"icon-weibiaoti-_fuzhi",
+			"title": "消息实时监控",
+			"list": [],
+			"jump": "work/msgtrackmonitor"
+		}, {
+			"menuid": "0600",
+			"name": "历史消息跟踪",
+			"icon":"icon-qianyueguanli",
+			"title": "历史消息跟踪",
+			"list": [],
+			"jump": "work/historicalmsg"
+	}],
+	"message": "ok"
+}

@@ -1,0 +1,355 @@
+<div class="layui-fluid gwmsgresend" style="padding: 20px 30px 0px 30px;">
+    <div class="layui-tab layui-tab-card">
+        <ul class="layui-tab-title">
+            <li lay-id="1" class="layui-this">患者信息重发</li>
+            <li lay-id="2">随访信息重发</li>
+            <li lay-id="3">报告卡信息重发</li>
+            <li lay-id="4">出院信息重发</li>
+            <li lay-id="5">应急处置信息重发</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">开始时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="starttime" id="starttime" lay-verify="required"
+                                       placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">结束时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="endtime" id="endtime" lay-verify="required"
+                                       placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                            </div>
+
+                            <label class="layui-form-label">操作类型</label>
+                            <div class="layui-input-inline">
+                                <select name="actionType" lay-search lay-verify="required"
+                                        lay-verType="tips">
+                                    <option value="0">更新</option>
+                                    <!--<option value="1">删除</option>
+                                    <option value="3">恢复</option>
+                                    <option value="8">转死亡</option>-->
+                                </select>
+                            </div>
+                            <label class="layui-form-label">同步状态</label>
+                            <div class="layui-input-inline">
+                                <select name="syncStatus" lay-search lay-verify="required"
+                                        lay-verType="tips">
+                                    <option value="1">已同步</option>
+                                    <option value="0">正在同步</option>
+                                    <option value="-1">未同步</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">身份证号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="IDCode" placeholder="请输入身份证号"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">同步错误</label>
+                            <div class="layui-input-inline" style="width:490px">
+                                <input type="text" id="SyncErr" name="SyncErr" placeholder="请输入同步错误"
+                                       lay-verType="tips" autocomplete="off" class="layui-input" style="width:490px">
+                            </div>
+                            <label class="layui-form-label">已有错误</label>
+                            <div class="layui-input-inline">
+                                <select id="ExistSyncErr" lay-filter="gwresend_err_select" lay-verType="tips">
+                                    <option value="">请选择同步错误</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="layui-form-item">
+
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="gwresend_pat_query">查询</button>
+                                <button class="layui-btn" lay-submit lay-filter="gwresend_pat_resend">批量重发</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table id="resend_patInfo_table" lay-filter="resend_patInfo_table"></table>
+            </div>
+
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">开始时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="followup_starttime" id="followup_starttime" lay-verify="required"
+                                       placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">结束时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="followup_endtime" id="followup_endtime" lay-verify="required"
+                                       placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                            </div>
+
+                            <label class="layui-form-label">操作类型</label>
+                            <div class="layui-input-inline">
+                                <select name="followup_actionType" lay-search lay-verify="required"
+                                        lay-verType="tips">
+                                    <option value="0">更新</option>
+                                    <!--<option value="1">删除</option>-->
+                                </select>
+                            </div>
+                            <label class="layui-form-label">同步状态</label>
+                            <div class="layui-input-inline">
+                                <select name="followup_syncStatus" lay-search lay-verify="required"
+                                        lay-verType="tips">
+                                    <option value="1">已同步</option>
+                                    <option value="0">正在同步</option>
+                                    <option value="-1">未同步</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">身份证号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="followup_IDCode" placeholder="请输入身份证号"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">同步错误</label>
+                            <div class="layui-input-inline" style="width:490px">
+                                <input type="text" id="followup_SyncErr" name="followup_SyncErr" placeholder="请输入同步错误" style="width:490px"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">已有错误</label>
+                            <div class="layui-input-inline">
+                                <select id="followup_ExistSyncErr" lay-filter="gwresend_followup_err_select" lay-verType="tips">
+                                    <option value="">请选择同步错误</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="gwresend_followup_query">查询</button>
+                                <button class="layui-btn" lay-submit lay-filter="gwresend_followup_resend">批量重发</button>
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="gwresend_followPat_resend">患者重发</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table id="resend_followupInfo_table" lay-filter="resend_followupInfo_table"></table>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">开始时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="report_starttime" id="report_starttime" lay-verify="required"
+                                       placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">结束时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="report_endtime" id="report_endtime" lay-verify="required"
+                                       placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                            </div>
+
+                            <label class="layui-form-label">操作类型</label>
+                            <div class="layui-input-inline">
+                                <select name="report_actionType" lay-search lay-verify="required"
+                                        lay-verType="tips">
+                                    <option value="0">更新</option>
+                                    <!--<option value="1">删除</option>-->
+                                </select>
+                            </div>
+                            <label class="layui-form-label">同步状态</label>
+                            <div class="layui-input-inline">
+                                <select name="report_syncStatus" lay-search lay-verify="required"
+                                        lay-verType="tips">
+                                    <option value="1">已同步</option>
+                                    <option value="0">正在同步</option>
+                                    <option value="-1">未同步</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">身份证号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="report_IDCode" placeholder="请输入身份证号"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">同步错误</label>
+                            <div class="layui-input-inline" style="width:490px">
+                                <input type="text" id="report_SyncErr" name="report_SyncErr" placeholder="请输入同步错误" style="width:490px"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">已有错误</label>
+                            <div class="layui-input-inline">
+                                <select id="report_ExistSyncErr" lay-filter="gwresend_report_err_select" lay-verType="tips">
+                                    <option value="">请选择同步错误</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="gwresend_report_query">查询</button>
+                                <button class="layui-btn" lay-submit lay-filter="gwresend_report_resend">批量重发</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table id="resend_report_table" lay-filter="resend_report_table"></table>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">开始时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="discharge_starttime" id="discharge_starttime" lay-verify="required"
+                                       placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">结束时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="discharge_endtime" id="discharge_endtime" lay-verify="required"
+                                       placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                            </div>
+
+                            <label class="layui-form-label">操作类型</label>
+                            <div class="layui-input-inline">
+                                <select name="discharge_actionType" lay-search lay-verify="required"
+                                        lay-verType="tips">
+                                    <option value="0">更新</option>
+                                    <!--<option value="1">删除</option>-->
+                                </select>
+                            </div>
+                            <label class="layui-form-label">同步状态</label>
+                            <div class="layui-input-inline">
+                                <select name="discharge_syncStatus" lay-search lay-verify="required"
+                                        lay-verType="tips">
+                                    <option value="1">已同步</option>
+                                    <option value="0">正在同步</option>
+                                    <option value="-1">未同步</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">身份证号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="discharge_IDCode" placeholder="请输入身份证号"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">同步错误</label>
+                            <div class="layui-input-inline" style="width:490px">
+                                <input type="text" id="discharge_SyncErr" name="discharge_SyncErr" placeholder="请输入同步错误" style="width:490px"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">已有错误</label>
+                            <div class="layui-input-inline">
+                                <select id="discharge_ExistSyncErr" lay-filter="gwresend_discharge_err_select" lay-verType="tips">
+                                    <option value="">请选择同步错误</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="gwresend_discharge_query">查询</button>
+                                <button class="layui-btn" lay-submit lay-filter="gwresend_discharge_resend">批量重发</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table id="resend_discharge_table" lay-filter="resend_discharge_table"></table>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">开始时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="emergency_starttime" id="emergency_starttime" lay-verify="required"
+                                       placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">结束时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="emergency_endtime" id="emergency_endtime" lay-verify="required"
+                                       placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                            </div>
+
+                            <label class="layui-form-label">操作类型</label>
+                            <div class="layui-input-inline">
+                                <select name="emergency_actionType" lay-search lay-verify="required"
+                                        lay-verType="tips">
+                                    <option value="0">更新</option>
+                                    <!--<option value="1">删除</option>-->
+                                </select>
+                            </div>
+                            <label class="layui-form-label">同步状态</label>
+                            <div class="layui-input-inline">
+                                <select name="emergency_syncStatus" lay-search lay-verify="required"
+                                        lay-verType="tips">
+                                    <option value="1">已同步</option>
+                                    <option value="0">正在同步</option>
+                                    <option value="-1">未同步</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">身份证号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="emergency_IDCode" placeholder="请输入身份证号"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">同步错误</label>
+                            <div class="layui-input-inline" style="width:490px">
+                                <input type="text" id="emergency_SyncErr" name="emergency_SyncErr" placeholder="请输入同步错误" style="width:490px"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <label class="layui-form-label">已有错误</label>
+                            <div class="layui-input-inline">
+                                <select id="emergency_ExistSyncErr" lay-filter="gwresend_emergency_err_select" lay-verType="tips">
+                                    <option value="">请选择同步错误</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="gwresend_emergency_query">查询</button>
+                                <button class="layui-btn" lay-submit lay-filter="gwresend_emergency_resend">批量重发</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table id="resend_emergency_table" lay-filter="resend_emergency_table"></table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--单条重发按钮-->
+<script type="text/html" id="gwPatInfo_Resend_table_bar">
+    {{# if(new Date().getFullYear()==d.InspectYear ){ }}
+    <a href="javascript:;" title="年审重置" lay-event="reset"><img src="/tool/dist/images/shbh.png"/></a>
+    {{# }; }}
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="resend">重发</a>
+</script>
+
+<script type="text/html" id="gwFollowupInfo_Resend_table_bar">
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="followup_resend">重发</a>
+</script>
+
+<script type="text/html" id="gwReportInfo_Resend_table_bar">
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="report_resend">重发</a>
+</script>
+
+<script type="text/html" id="gwDischargeInfo_Resend_table_bar">
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="discharge_resend">重发</a>
+</script>
+
+<script type="text/html" id="gwEmergencyInfo_Resend_table_bar">
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="emergency_resend">重发</a>
+</script>
+
+<script>
+    layui.use('work/gwmsgresend', layui.factory('work/gwmsgresend'));
+</script>

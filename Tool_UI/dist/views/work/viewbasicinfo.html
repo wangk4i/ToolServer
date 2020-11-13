@@ -1,0 +1,112 @@
+<div class="layui-fluid">
+    <fieldset class="layui-elem-field">
+        <legend>机构有无基层直报员</legend>
+        <div class="layui-field-box">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">省</label>
+                    <div class="layui-input-inline">
+                        <select id="province" lay-filter="provincefiletr" lay-verType="tips">
+                            <option>请选择</option>
+                        </select>
+                    </div>
+                    <label class="layui-form-label">市</label>
+                    <div class="layui-input-inline">
+                        <select id="city" lay-filter="cityfiletr" lay-verType="tips">
+                            <option>请选择</option>
+                        </select>
+                    </div>
+                    <label class="layui-form-label">区、县</label>
+                    <div class="layui-input-inline">
+                        <select id="county" lay-filter="countyfiletr" lay-verify="required"
+                            lay-verType="tips">
+                            <option>请选择</option>
+                        </select>
+                    </div>
+                    <label class="layui-form-label">机构</label>
+                    <div class="layui-input-inline">
+                        <select id="organ" lay-verType="tips">
+                        </select>
+                    </div>
+                    <div class="">
+                        <button class="layui-btn" id="btn-query-organ-zb1">查询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table id="isreporter_table" lay-filter="isreporter_table"></table>
+    </fieldset>
+    <fieldset hidden="hidden" class="layui-elem-field">
+        <legend>地区数据查询</legend>
+        <div class="layui-field-box">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">省</label>
+                    <div class="layui-input-inline">
+                        <select id="province1" lay-filter="shengfiletr" lay-verType="tips">
+                            <option>请选择</option>
+                        </select>
+                    </div>
+                    <label class="layui-form-label">市</label>
+                    <div class="layui-input-inline">
+                        <select id="city1" lay-filter="shifiletr" lay-verType="tips">
+                            <option>请选择</option>
+                        </select>
+                    </div>
+                    <label class="layui-form-label">区、县</label>
+                    <div class="layui-input-inline">
+                        <select id="county1" lay-filter="quefiletr" lay-verify="required"
+                            lay-verType="tips">
+                            <option>请选择</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" id="btn-area-query">查询</button>
+                        <button class="layui-btn" id="btn-area-export">导出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table id="zone_table" lay-filter="zone_table"></table>
+    </fieldset>
+    <fieldset hidden="hidden" class="layui-elem-field">
+        <legend>机构数据查询</legend>
+        <div class="layui-field-box">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">省</label>
+                    <div class="layui-input-inline">
+                        <select id="province2" lay-filter="sheng" lay-verType="tips">
+                            <option>请选择</option>
+                        </select>
+                    </div>
+                    <label class="layui-form-label">市</label>
+                    <div class="layui-input-inline">
+                        <select id="city2" lay-filter="shi" lay-verType="tips">
+                            <option>请选择</option>
+                        </select>
+                    </div>
+                    <label class="layui-form-label">区、县</label>
+                    <div class="layui-input-inline">
+                        <select id="county2" lay-filter="que" lay-verify="required" lay-verType="tips">
+                            <option>请选择</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn isreporter2" id="btn-organ-query">查询</button>
+                        <button class="layui-btn" id="btn-organ-export">导出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table id="organ_table" lay-filter="organ_table"></table>
+    </fieldset>
+</div>
+
+<script type="text/html" id="SyncOrgbar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">同步</a>
+</script>
+
+<script>
+    layui.use('work/viewbasicinfo', layui.factory('work/viewbasicinfo'));
+</script>

@@ -1,0 +1,107 @@
+<div class="layui-fluid orgchange">
+    <fieldset class="layui-field-title layui-elem-field">
+        <legend>机构迁移</legend>
+        <div class="layui-field-box">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">主体机构所属地区编码：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="ZonecodeMain" placeholder="请输入主体机构所属地区编码"
+                                lay-verify="number|required" lay-verType="tips" autocomplete="off"
+                                id="LAY_zonechange" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">主体机构编码：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="OrgcodeMain" placeholder="请输入主体机构编码"
+                                lay-verify="number|required" lay-verType="tips" id="LAY_orgchange"
+                                autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">被处理机构所属地区编码：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="ZonecodePassive" placeholder="请输入被处理机构所属地区编码"
+                                lay-verify="number|required" lay-verType="tips" autocomplete="off"
+                                class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">被处理机构编码：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="OrgcodePassive" placeholder="请输入被处理机构编码"
+                                lay-verify="number|required|orgCode" lay-verType="tips"
+                                autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <button class="layui-btn" lay-submit
+                                lay-filter="handleOrganiseChange_edit_btn">迁移</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <table id="handleOrganiseChange_edit" lay-filter="handleOrganiseChange_edit"></table>
+
+    <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+        <legend>机构迁移迁移操作记录</legend>
+        <div class="layui-field-box">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">主体机构所属地区编码：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="ZonecodeMainview" placeholder="请输入主体机构所属地区编码"
+                                lay-verify="" lay-verType="tips" autocomplete="off"
+                                id="LAY_zonechange_view" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">主体机构编码：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="OrgcodeMainview" placeholder="请输入主体机构编码"
+                                lay-verify="" lay-verType="tips" id="LAY_orgchange_view"
+                                autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">被处理机构所属地区编码：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="ZonecodePassiveview" placeholder="请输入被处理机构所属地区编码"
+                                lay-verify="" lay-verType="tips" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">被处理机构编码：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="OrgcodePassiveview" placeholder="请输入被处理机构编码"
+                                lay-verify="" lay-verType="tips" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <button class="layui-btn" lay-submit
+                                lay-filter="handleOrganiseChange_view_btn">查询</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <table id="handleOrganiseChange_view" lay-filter="handleOrganiseChange_view"></table>
+    <div id="handleOrganiseChange_viewpage"></div>
+</div>
+
+
+<script>
+    layui.use('work/viewyearinfo', layui.factory('work/viewyearinfo'));
+</script>

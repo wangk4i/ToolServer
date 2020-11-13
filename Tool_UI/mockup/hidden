@@ -1,0 +1,7 @@
+,{
+    "menuid": "0106",
+    "name": "机构迁移",
+    "title": "机构迁移",
+    "list": [],
+    "jump": "work/organchange"
+}

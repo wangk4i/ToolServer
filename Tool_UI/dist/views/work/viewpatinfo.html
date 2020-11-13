@@ -1,0 +1,559 @@
+<div  class="layui-fluid page-pat-info">
+    <fieldset class="layui-elem-field" style="width: 98.5%;">
+        <legend>患者查重</legend>
+        <div class="layui-field-box">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">证件号码</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="IDNo" placeholder="请输入身份证号" lay-verify="identity"
+                            lay-verType="tips" autocomplete="off" class="layui-input">
+                    </div>
+                    <label class="layui-form-label">证件类型</label>
+                    <div class="layui-input-inline">
+                        <select name="IDType" lay-search lay-filter="ZoneCd" lay-verify="required"
+                                lay-verType="tips">
+                            <option value="1">身份证</option>
+                            <option value="3">护照</option>
+                            <option value="8">港澳台居民居住证</option>
+                        </select>
+                    </div>
+
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" lay-submit lay-filter="repeat_pat_query">查询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table id="repeat_patInfo_table" lay-filter="repeat_patInfo_table"></table>
+    </fieldset>
+    <fieldset class="layui-elem-field">
+        <legend>患者删除</legend>
+        <div class="layui-field-box">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">患者主键</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="BasicInformationId" placeholder="请输入患者主键"
+                            lay-verify="required" lay-verType="tips" autocomplete="off"
+                            class="layui-input">
+                    </div>
+
+                    <label class="layui-form-label">删除原因</label>
+                    <div class="layui-input-inline">
+                        <select name="DeleteCause" lay-search lay-filter="ZoneCd" lay-verify="required"
+                            lay-verType="tips">
+                            <option value="1">查重病例</option>
+                            <option value="2">诊断有误</option>
+                            <option value="3">错误输人</option>
+                            <option value="4">其他</option>
+                        </select>
+                    </div>
+
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" lay-submit lay-filter="pat_delete">删除</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="layui-elem-field">
+        <legend>患者恢复</legend>
+        <div class="layui-field-box">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">患者主键</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="BasicId" placeholder="请输入患者主键" lay-verify="required"
+                            lay-verType="tips" autocomplete="off" class="layui-input">
+                    </div>
+					
+					<label class="layui-form-label">恢复原因</label>
+					<div class="layui-input-inline">
+					    <input type="text" name="RecoveryCause" placeholder="请输入恢复原因" lay-verify="required"
+					        lay-verType="tips" autocomplete="off" class="layui-input">
+					</div>
+					
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" lay-submit lay-filter="pat_recovery">恢复</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="layui-elem-field" style="width: 99%;">
+        <legend>患者同步</legend>
+        <div class="layui-field-box">
+            <div class="layui-form" onsubmit="return false">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">身份证号/主键</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="CardID" placeholder="请输入身份证号/主键" lay-verify="required"
+                            lay-verType="tips" autocomplete="off" class="layui-input switchIDCode">
+                    </div>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" lay-submit lay-filter="syncpat_query">查询</button>
+                    </div>
+                    <div class="layui-input-inline" style="margin-left:-120px;">
+                        <button class="layui-btn" type="button" 
+                            id="patinfo-Syncs">同步</button>
+                    </div>
+                    <label class="layui-form-label" style='margin-left:-130px;'>是否为身份证</label>
+                    <input type="checkbox" name="IDCode" lay-skin="switch"
+                        lay-filter="switchIDCode_Check" lay-text="是|否" checked>
+                </div>
+            </div>
+            <table id="sync_patInfo_tables" lay-filter="sync_patInfo_tables"></table>
+        </div>
+    </fieldset>
+    <!--新增根据国网id查询国网患者信息-->
+    <fieldset class="layui-elem-field" style="width: 100%;">
+        <legend>患者信息</legend>
+        <div class="layui-field-box">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">国网主键</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="BasicId2" placeholder="请输入国网主键" lay-verify="required"
+                            lay-verType="tips" autocomplete="off" class="layui-input">
+                    </div>
+
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" id="btn-query-basic-patInfo">查询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table id="basicpatInfo_table" lay-filter="basicpatInfo_table"></table>
+    </fieldset>
+
+    <fieldset class="layui-elem-field" style="width: 100%;">
+        <legend>死亡患者同步</legend>
+        <div class="layui-field-box">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">身份证号/主键</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="PatIDCode" placeholder="请输入身份证号/主键" lay-verify="required"
+                            lay-verType="tips" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" lay-submit
+                            lay-filter="basicDeathpatInfoByIDCode">查询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table id="basicDeathpatInfo_table" lay-filter="basicDeathpatInfo_table"></table>
+    </fieldset>
+</div>
+
+<script type="text/html" id="basicpatinfo">
+    <div class="basic" style="margin-top: 15px;margin-left: 15px">
+        <form class="layui-form" action="" lay-filter="formTest">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">患者主键</label>
+                    <div class="layui-input-inline" >
+                        <input type="text" name="BasicInformationId" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">管理地区</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="ZoneNam" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">管理单位</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="OrgCodeValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">患者编号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="BasicInformationNumber" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">患者姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="PatientName" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">证件类型</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="IDType" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">证件号码</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="IDCode" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">国籍</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="NationalityValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="GenderCodeValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">出生日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="BirthDate" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">监护人姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="GuardianNam" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">监护人电话</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="GuardianTel" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">监护人与患者关系</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="RelationToPatient" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">两系三代精神疾病家族史</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="FamilyHistoryValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">婚姻状况</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="MaritalStatusValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width:300px;">
+                    <label class="layui-form-label">民族</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="NationValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 25px">
+                    <label class="layui-form-label">就业情况(职业)</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="OccupationValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">文化程度</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="EducationLevelValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">现住地类别</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="CurrentAddressValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">现住址</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="LivingAddressDetails" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width:300px;">
+                    <label class="layui-form-label">病人属于</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="LivingAddressAttributionValue" class="layui-input"
+                            readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 25px">
+                    <label class="layui-form-label">现住地国标码</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="LivingAddressCode" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">户籍详细地址</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="DomicileAddressDetails" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">户籍地址类型</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="DomicileAddressAttrbutionValue" class="layui-input"
+                            readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">户籍国标码</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="DomicileAddressCode" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width:300px;">
+                    <label class="layui-form-label">户别</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="Registertype" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 25px">
+                    <label class="layui-form-label">户别不详原因</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="UnknownCause" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">目前诊断ICD10编码</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="Diagnosis" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">确诊医院</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="DiagnosisHospital" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">确诊医院不详</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="UnknownHospital" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width:300px;">
+                    <label class="layui-form-label">确诊医院不详原因</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="UnknownReason" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 25px">
+                    <label class="layui-form-label">确诊日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="DiagnosisDate" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">确诊日期精确度</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="DiagnosisDateAccValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">初次发病时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="FirstOnsetDate" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">初次发病时间精确度</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="FirstOnsetDateAccValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width:300px;">
+                    <label class="layui-form-label">是否已进行抗精神病药物治疗</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="MentalMedicineValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 25px">
+                    <label class="layui-form-label">首次抗精神病药治疗时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="FirstMedicineTime" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">首次抗精神病药治疗时间精确度</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="FIrstMedicineTimeAccValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">既往住院情况(次)</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="InMentalHospital" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">既往关锁情况</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="InCaptivityValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width:300px;">
+                    <label class="layui-form-label">既往危险行为</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="PastRiskHaveList" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 25px">
+                    <label class="layui-form-label">家庭经济状况</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="FamilyEconomicsValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">知情同意</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="InfomedConsentValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">知情同意书签字时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="SignedInformedConsentDate" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">死亡日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="DeathDate" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width:300px;">
+                    <label class="layui-form-label">死亡原因</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="DeathCauseValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 25px">
+                    <label class="layui-form-label">死亡原因明细</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="BodyDiseaseValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">是否为精准扶贫对象</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="IfPovertyValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">是否为监护补助对象</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="IfSubsidiesValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">领取残疾人证情况</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="ReceiveDisabledCardList" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width:300px;">
+                    <label class="layui-form-label">精神残疾人证等级</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="DisabilityGradeValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 25px">
+                    <label class="layui-form-label">是否为关爱帮扶小组对象</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="IfSupportgroupValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">是否为家庭医师签约服务对象</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="IfFamilyphysicianValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px">
+                    <label class="layui-form-label">是否参加社区康复服务</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="IfRecoveryValue" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/html" id="basicpatInfobar">
+    <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="gw_pat_delete">删除</a>
+</script>
+
+<script type="text/html" id="gw_pat_delete_layer">
+    <div class="layui-form">
+        <div class="layui-form-item">
+            <br/>
+            <label class="layui-form-label">删除原因</label>
+            <div class="layui-input-inline">
+                <select id="DeleteCause1" lay-verify="required"
+                        lay-verType="tips">
+                    <option value="1">查重病例</option>
+                    <option value="2">诊断有误</option>
+                    <option value="3">错误输人</option>
+                    <option value="4">其他</option>
+                </select>
+            </div>
+        </div>
+<!--        <div class="layui-form-item" style="margin-top: 20px;">-->
+<!--            <div class="layui-input-block" style="margin: auto;width: 70%;display: flex;justify-content: space-around;">-->
+<!--                <button class="layui-btn" lay-submit lay-filter="gw_patInfo_delete">删除</button>-->
+<!--                <button type="reset" class="layui-btn layui-btn-primary">取消</button>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+</script>
+
+<script type="text/html" id="gwpatinfotpl_layer">
+    <div class="basic tool-card-border" style="margin-left: 15px">
+        <form class="layui-form" action="" lay-filter="formTest1">
+            {{# for(var key in d.infoMap){ }}
+            <div class="layui-inline">
+                <label class="layui-form-label">{{ d.infoMap[key] }}</label>
+                <div class="layui-input-inline">
+                    {{# if (null == d.data[key]){ d.data[key]=''} }}
+                    <input type="text" value="{{ d.data[key] }}" class="layui-input" readonly="true" />
+                </div>
+            </div>
+            {{# }; }}
+        </form>
+    </div>
+</script>
+
+<script type="text/html" id="Deathbar">
+    {{# if (d.BaseStatusCd === 'InState002' ){ }}
+    <a class="layui-btn layui-btn-xs" lay-event="SyncDeath">同步</a>
+    {{# } }}
+</script>
+
+<script>
+    layui.use('work/viewpatinfo', layui.factory('work/viewpatinfo'));
+</script>

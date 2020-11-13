@@ -1,0 +1,16 @@
+<!-- 获取登录的用户的角色的信息 -->
+<script type="text/html" template id="UserRole">
+    {{# 
+      var userinfo  = layui.data('health').userinfo;
+      /**
+      * 获取local中的tab页签切换下标
+      */
+    }}
+      <div id="role-panel"  lay-role="{{ userinfo.RoleID}}">{{userinfo.RoleName }}</div>
+    <span class="layui-nav-more"></span> 
+      <dl class="layui-nav-child" id="idl" lay-filter="idl">  
+        {{#  layui.each(userinfo.UserRoles, function(index, item){ }} 
+          <dd><a href="javascript:;" lay-role="{{ item.RoleID }}">{{ item.RoleName }}</a></dd> 
+        {{#  }); }} 
+      </dl> 
+</script>

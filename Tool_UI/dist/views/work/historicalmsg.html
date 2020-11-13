@@ -1,0 +1,290 @@
+<div class="layui-fluid historicalmsg" style="padding: 20px 30px 0px 30px;">
+    <!--<div class="layui-tab layui-tab-card">
+        <ul class="layui-tab-title">
+            <li lay-id="1" class="layui-this">患者消息跟踪</li>
+            <li lay-id="2">随访消息跟踪</li>
+            <li lay-id="3">报告卡消息跟踪</li>
+            <li lay-id="4">出院消息跟踪</li>
+            <li lay-id="5">应急处置消息跟踪</li>
+        </ul>
+        <div class="layui-tab-content">
+
+            <div class="layui-tab-item layui-show">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">患者主键</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="msg_patCd" name="msg_patCd" placeholder="请输入患者主键" lay-verify="required"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="msg_patInfo_query">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>患者历史消息</legend>
+                </fieldset>
+                <div class="layui-fluid">
+                    <div id="msg_patInfo_view"></div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">随访主键</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="msg_followupCd" name="msg_followupCd" placeholder="请输入随访主键" lay-verify="required"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="msg_followup_query">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>随访历史消息</legend>
+                </fieldset>
+                <div class="layui-fluid">
+                    <div id="msg_followup_view"></div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">报告卡主键</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="msg_reportCd" name="msg_reportCd" placeholder="请输入报告卡主键" lay-verify="required"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="msg_report_query">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>报告卡历史消息</legend>
+                </fieldset>
+                <div class="layui-fluid">
+                    <div id="msg_report_view"></div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">出院单主键</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="msg_dischargeCd" name="msg_dischargeCd" placeholder="请输入出院单主键" lay-verify="required"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="msg_discharge_query">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>出院单历史消息</legend>
+                </fieldset>
+                <div class="layui-fluid">
+                    <div id="msg_discharge_view"></div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width:115px">应急处置主键</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="msg_emergencyCd" name="msg_emergencyCd" placeholder="请输入应急处置主键" lay-verify="required"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="msg_emergency_query">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>应急处置历史消息</legend>
+                </fieldset>
+                <div class="layui-fluid">
+                    <div id="msg_emergency_view"></div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>-->
+    <!--<fieldset class="layui-elem-field">
+        <legend>历史消息追踪</legend>
+        <div class="layui-field-box">
+            <div class="layui-form layui-form-pane health-query">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">消息类型</label>
+                    <div class="multi-checkbox" hyd-name="msg_type">
+                        <div><span hyd-value="1">患者</span></div>
+                        <div><span hyd-value="2">随访</span></div>
+                        <div><span hyd-value="3">报告卡</span></div>
+                        <div><span hyd-value="3">出院单</span></div>
+                        <div><span hyd-value="3">应急处置</span></div>
+                    </div>
+
+                    <label class="layui-form-label">消息主键</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="moveIN_patinfocd" placeholder="请输入国网主键"
+                               lay-verify="required" lay-verType="tips" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" lay-submit lay-filter="msg_history_query">查询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>-->
+    <fieldset class="layui-elem-field">
+        <legend>消息追踪</legend>
+        <div class="layui-field-box">
+            <div class="layui-form layui-form-pane health-query">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">消息类型</label>
+                    <div class="multi-checkbox" hyd-name="history_msg_type">
+                        <div class="hyd-selected"><span hyd-value="1">患者</span></div>
+                        <div><span hyd-value="2">随访</span></div>
+                        <div><span hyd-value="3">报告卡</span></div>
+                        <div><span hyd-value="4">出院单</span></div>
+                        <div><span hyd-value="5">应急处置</span></div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">消息主键</label>
+                    <div class="layui-input-inline" style="width:250px">
+                        <input type="text" id='history_msg_id' name="history_msg_id" placeholder="请输入国网主键" lay-verify="required"
+                               lay-verType="tips" autocomplete="off" class="layui-input" style="width:250px">
+                    </div>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" lay-submit lay-filter="history_msg_query">查询</button>
+                    </div>
+                </div>
+                <br/>
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+            <legend>历史消息</legend>
+        </fieldset>
+        <div class="layui-fluid">
+            <div id="history_msg_view"></div>
+        </div>
+    </fieldset>
+
+</div>
+
+
+<script type="text/html" id="historymsgtpl">
+    <div class="msg-border">
+        <div class="layui-row layui-col-space15">
+            {{# layui.each(d.data, function(index, item){ }}
+            <div class="layui-col-md3">
+                <div class="layui-card msg-card msg-card-text">
+                    <div class="layui-card-header" style="text-align: center">
+                        <div class="layui-col-md7"><span>{{ item.MsgFileID.substr(item.MsgFileID.lastIndexOf('-')+1) }}</span></div>
+                        <div class="layui-col-md3"><span>{{ item.ActionNam }}</span></div>
+                        <a href="javascript:;" title="{{item.MsgFileID}}" onclick="onMsgDetails(this,'{{ item.MsgFileID }}','{{ item.IsLocal }}')"><i class="layui-icon layui-icon-tips"></i></a>
+                    </div>
+                    <div class="layui-card-body ">
+                        <div class="layui-row">
+                            <div class="layui-col-md3"><span>地区</span></div>
+                            <div class="layui-col-md9"><span>{{ item.ZoneNam }}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md3"><span>机构</span></div>
+                            <div class="layui-col-md9"><span>{{ item.OrganNam }}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md3"><span>触发时间</span></div>
+                            <div class="layui-col-md9"><span>{{ item.TrigerTime }}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md3"><span>生成时间</span></div>
+                            <div class="layui-col-md9"><span>{{ item.BuildTime }}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md3"><span>接收时间</span></div>
+                            <div class="layui-col-md9"><span>{{ item.ReceivedTime }}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md3"><span>回写时间</span></div>
+                            <div class="layui-col-md9"><span>{{ item.WriteTime }}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md3"><span>业务状态</span></div>
+                            <div class="layui-col-md9"><span>{{ item.Status }}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{# }); }}
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="historymsgdetailtpl">
+    <!--<div class="layui-form layui-form-pane health-query" style="margin-top: 20px;padding: 5px;">
+        <div class="layui-form-item">
+            <label class="layui-form-label">文件类型</label>
+            <div class="multi-checkbox" hyd-name="history_msg_file_type">
+                <div class="hyd-selected"><span hyd-value="1">消息Json</span></div>
+                <div><span hyd-value="2">交换Xml</span></div>
+                <div><span hyd-value="3">国网Txt</span></div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div style="padding: 15px;line-height: 2;background: #efefef; height: 90%; min-height: 603px">
+                &lt;!&ndash; 查看模式 &ndash;&gt;
+                <div>
+                    <pre id="filedetail_box"></pre>
+                </div>
+
+            </div>
+        </div>
+    </div>-->
+
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">消息Json</li>
+            <li>交换Xml</li>
+            <li>国网Txt</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <pre id="MsgJsonFileDetail"></pre>
+            </div>
+            <div class="layui-tab-item">
+                <pre id="MsgXmlFileDetail"></pre>
+            </div>
+            <div class="layui-tab-item">
+                <pre id="MsgTxtFileDetail"></pre>
+            </div>
+        </div>
+    </div>
+
+
+</script>
+
+
+<script>
+    layui.use('work/historicalmsg', layui.factory('work/historicalmsg'));
+</script>

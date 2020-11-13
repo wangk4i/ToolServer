@@ -1,0 +1,980 @@
+<div class="layui-fluid gwqueryinfo" style="padding: 20px 30px 0px 30px;">
+    <div class="layui-tab layui-tab-card">
+        <ul class="layui-tab-title">
+            <li lay-id="1" class="layui-this">患者信息查询</li>
+            <li lay-id="2">随访信息查询</li>
+            <li lay-id="3">报告卡信息查询</li>
+            <li lay-id="4">出院信息查询</li>
+            <li lay-id="5">应急处置信息查询</li>
+            <li lay-id="6">根据患者查询报告卡</li>
+            <li lay-id="7">根据患者查询出院单</li>
+            <li lay-id="8">根据患者查询应急处置</li>
+            <li lay-id="9">基层直报员查询</li>
+
+
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width:150px">患者主键</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id='patCd' name="patCd" placeholder="请输入患者主键" lay-verify="required"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="gw_patinfo_query">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>患者信息</legend>
+                </fieldset>
+                <div class="layui-fluid" id="LAY-component-grid-list1">
+                    <div id="gw_patinfo_view"></div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width:150px">患者主键</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id='followPatCd' name="followPatCd" placeholder="请输入患者主键" lay-verify="required"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="gw_followup_query">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>患者信息</legend>
+                </fieldset>
+                <div class="layui-fluid" id="LAY-component-grid-list2">
+                    <div class="layui-row layui-col-space12 gw-follow-patinfo-list">
+
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>随访信息</legend>
+                </fieldset>
+                <div class="layui-fluid" id="LAY-component-grid-list3">
+                    <div><div class="layui-collapse" id="gw_followup_view" lay-accordion hidden></div></div>
+                    <br/>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" id="followup_more_click" lay-submit lay-filter="gw_followup_more" style="display:none;">more...</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width:150px">报告卡主键</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id='reportCd' name="reportCd" placeholder="请输入报告卡主键" lay-verify=""
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="gw_casereport_query">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>报告卡信息</legend>
+                </fieldset>
+                <div class="layui-fluid" id="LAY-component-grid-list4">
+                    <div id="gw_report_view"></div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width:150px">出院单主键</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id='dischargeCd' name="dischargeCd" placeholder="请输入出院单主键" lay-verify=""
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="gw_discharge_query">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>出院信息</legend>
+                </fieldset>
+                <div class="layui-fluid" id="LAY-component-grid-list5">
+                    <div id="gw_discharge_view"></div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width:150px">应急处置主键</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id='emerDealCd' name="emerDealCd" placeholder="请输入应急处置主键" lay-verify=""
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="gw_emerdeal_query">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>应急处置信息</legend>
+                </fieldset>
+                <div class="layui-fluid" id="LAY-component-grid-list6">
+                    <div id="gw_emerdeal_view"></div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width:150px">患者主键</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id='report_patCd' name="report_patCd" placeholder="请输入患者主键" lay-verify=""
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="gw_casereport_queryByPat">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>报告卡信息</legend>
+                </fieldset>
+                <div class="layui-fluid" id="LAY-component-grid-list7">
+                    <div><div class="layui-collapse" id="gw_report_pat_view" lay-accordion hidden></div></div>
+                    <br/>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" id="report_more_click" lay-submit lay-filter="gw_report_more" style="display:none;">more...</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width:150px">患者主键</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id='discharge_patCd' name="discharge_patCd" placeholder="请输入患者主键" lay-verify=""
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="gw_discharge_queryByPat">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>出院信息</legend>
+                </fieldset>
+                <div class="layui-fluid" id="LAY-component-grid-list8">
+                    <div><div class="layui-collapse" id="gw_discharge_pat_view" lay-accordion hidden></div></div>
+                    <br/>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" id="discharge_more_click" lay-submit lay-filter="gw_discharge_more" style="display:none;">more...</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width:150px">身份证号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id='emerDeal_patCd' name="emerDeal_patCd" placeholder="请输入身份证号" lay-verify=""
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="gw_emerDeal_queryByPat">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>应急处置信息</legend>
+                </fieldset>
+                <div class="layui-fluid" id="LAY-component-grid-list9">
+                    <div><div class="layui-collapse" id="gw_emerdeal_pat_view" lay-accordion hidden></div></div>
+                    <br/>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" id="emerdeal_more_click" lay-submit lay-filter="gw_emerdeal_more" style="display:none;">more...</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">省</label>
+                            <div class="layui-input-inline">
+                                <select id="gw_province" lay-filter="gw_province_select" lay-verType="tips">
+                                    <option>请选择</option>
+                                </select>
+                            </div>
+                            <label class="layui-form-label">市</label>
+                            <div class="layui-input-inline">
+                                <select id="gw_city" lay-filter="gw_city_select" lay-verType="tips">
+                                    <option>请选择</option>
+                                </select>
+                            </div>
+                            <label class="layui-form-label">区、县</label>
+                            <div class="layui-input-inline">
+                                <select id="gw_county" lay-filter="gw_county_select" lay-verify="required"
+                                        lay-verType="tips">
+                                    <option>请选择</option>
+                                </select>
+                            </div>
+                            <label class="layui-form-label">机构</label>
+                            <div class="layui-input-inline">
+                                <select id="gw_organ" lay-verType="tips">
+                                </select>
+                            </div>
+                            <div class="">
+                                <button class="layui-btn" id="gw_reporter_query">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table id="gw_hasreporter_table" lay-filter="gw_hasreporter_table"></table>
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/html" id="gwpatinfotpl">
+    <div class="basic tool-card-border" style="margin-left: 15px">
+        {{# for(var key in d.infoMap){ }}
+        <div class="layui-inline">
+            <label class="layui-form-label">{{ d.infoMap[key] }}</label>
+            <div class="layui-input-inline">
+                {{# if (null == d.data[key]){ d.data[key]=''} }}
+                <input type="text" value="{{ d.data[key] }}" class="layui-input" readonly="true" />
+            </div>
+        </div>
+        {{# }; }}
+    </div>
+</script>
+
+<script type="text/html" id="gwfollowuptpl">
+    {{# layui.each(d.data.FollowupInfoList, function(index, item){ }}
+    <div class="layui-colla-item">
+            <!--手风琴标题-->
+            <h2 class="layui-colla-title">
+                <span>{{ item.FollowupDate }}</span>
+                <span>{{ item.DiseaseStatusCode }}</span>
+                <span>{{ item.HospitalStateCode }}</span>
+                <span>{{ item.PsychogenyRiskCode }}</span>
+            </h2>
+            <div class="layui-colla-content">
+                <div class="basic tool-card-border" style="margin-top: 15px;margin-left: 15px">
+                    {{#  for(var key in d.infoMap){ }}
+                    <div class="layui-inline">
+                        <label class="layui-form-label">{{ d.infoMap[key] }}</label>
+                        <div class="layui-input-inline" >
+                            {{# if (null == item[key]){ item[key]=''} }}
+                            <input type="text" value="{{ item[key] }}" class="layui-input" readonly="true" />
+                        </div>
+                    </div>
+                    {{#  }; }}
+                </div>
+
+                {{# if (null != item.DrugList){ }}
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>目前用药</legend>
+                </fieldset>
+                <div class="tool-card-med">
+                    <div class="layui-row layui-col-space15">
+                        {{# layui.each(item.DrugList, function(drugindex, drugitem){ }}
+                        <div class="layui-col-md2">
+                            <div class="layui-card tool-med-border">
+                                {{# if (drugitem.LongActingDrugFlagCode==1){ }}
+                                <div class="layui-card-header">
+                                    <span>{{ drugitem.Sort }}</span>
+                                    <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-danger med-sort">L</button>
+                                </div>
+                                <div class="layui-card-body tool-med-body">
+                                    <div class="layui-row">
+                                        <div class="layui-col-md5" style="text-align: left"><span>代码</span></div>
+                                        <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-md5" style="text-align: left"><span>规格/单位</span></div>
+                                        <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-md5" style="text-align: left"><span>频率</span></div>
+                                        <div class="layui-col-md7" style="text-align: left">
+                                            <span>{{ drugitem.LongActingDrugFrequency}}</span>
+                                            {{# if(drugitem.LongActingDrugFrequencyUnitCode=='02'){ }}
+                                            <span>次/月</span>
+                                            {{#  } else{ }}
+                                            <span>次/周</span>
+                                            {{#  }; }}
+                                        </div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-md5" style="text-align: left"><span>次剂量</span></div>
+                                        <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.LongActingDrugDose}}</span></div>
+                                    </div>
+                                </div>
+                                {{# } else { }}
+                                <div class="layui-card-header">
+                                    <span>{{ drugitem.Sort }}</span>
+                                    <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal med-sort">N</button>
+                                </div>
+                                <div class="layui-card-body">
+                                    <div class="layui-row">
+                                        <div class="layui-col-md4" style="text-align: left"><span>代码</span></div>
+                                        <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-md4" style="text-align: left"><span>规格/单位</span></div>
+                                        <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-md4" style="text-align: left"><span>早/中/晚</span></div>
+                                        <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.NonLongActingDrugDoseMorning }}/{{ drugitem.NonLongActingDrugDoseNoon }}/{{ drugitem.NonLongActingDrugDoseEvening }}</span></div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <label class="layui-col-md4">早/中/晚</label>
+                                        <label class="layui-col-md8">{{ drugitem.NonLongActingDrugDoseMorning }}/{{ drugitem.NonLongActingDrugDoseNoon }}/{{ drugitem.NonLongActingDrugDoseEvening }}</label>
+                                    </div>
+                                </div>
+                                {{# } }}
+                            </div>
+                        </div>
+                        {{#  }); }}
+                    </div>
+                </div>
+                {{# }; }}
+                {{# if (null != item.GuideDrugList){ }}
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>指导用药</legend>
+                </fieldset>
+                <div class="tool-card-med">
+                    <div class="layui-row layui-col-space15">
+                        {{# layui.each(item.GuideDrugList, function(drugindex, drugitem){ }}
+                        <div class="layui-col-md2">
+                            <div class="layui-card tool-med-border">
+                                {{# if (drugitem.LongActingDrugFlagCode==1){ }}
+                                <div class="layui-card-header">
+                                    <span>{{ drugitem.Sort }}</span>
+                                    <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-danger med-sort">L</button>
+                                </div>
+                                <div class="layui-card-body">
+                                    <div class="layui-row">
+                                        <div class="layui-col-md5" style="text-align: left"><span>代码</span></div>
+                                        <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-md5" style="text-align: left"><span>规格/单位</span></div>
+                                        <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-md5" style="text-align: left"><span>频率</span></div>
+                                        <div class="layui-col-md7" style="text-align: left">
+                                            <span>{{ drugitem.LongActingDrugFrequency}}</span>
+                                            {{# if(drugitem.LongActingDrugFrequencyUnitCode=='02'){ }}
+                                            <span>次/月</span>
+                                            {{#  } else{ }}
+                                            <span>次/周</span>
+                                            {{#  }; }}
+                                        </div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-md5" style="text-align: left"><span>次剂量</span></div>
+                                        <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.LongActingDrugDose}}</span></div>
+                                    </div>
+                                </div>
+                                {{# } else { }}
+                                <div class="layui-card-header">
+                                    <span>{{ drugitem.Sort }}</span>
+                                    <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal med-sort">N</button>
+                                </div>
+                                <div class="layui-card-body">
+                                    <div class="layui-row">
+                                        <div class="layui-col-md5" style="text-align: left"><span>代码</span></div>
+                                        <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-md5" style="text-align: left"><span>规格/单位</span></div>
+                                        <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-md5" style="text-align: left"><span>早/中/晚</span></div>
+                                        <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.NonLongActingDrugDoseMorning }}/{{ drugitem.NonLongActingDrugDoseNoon }}/{{ drugitem.NonLongActingDrugDoseEvening }}</span></div>
+                                    </div>
+                                    <div class="layui-row"><br/></div>
+                                </div>
+                                {{# } }}
+                            </div>
+                        </div>
+                        {{#  }); }}
+                    </div>
+                </div>
+                {{# }; }}
+            </div>
+        </div>
+    {{#  }); }}
+</script>
+
+<script type="text/html" id="gwreporttpl">
+    <div class="basic tool-card-border" style="margin-left: 15px">
+        {{# for(var key in d.infoMap){ }}
+        <div class="layui-inline">
+            <label class="layui-form-label">{{ d.infoMap[key] }}</label>
+            <div class="layui-input-inline">
+                {{# if (null == d.data[key]){ d.data[key]=''} }}
+                <input type="text" value="{{ d.data[key] }}" class="layui-input" readonly="true" />
+            </div>
+        </div>
+        {{# }; }}
+    </div>
+    {{# if (null != d.data.DrugList){ }}
+    <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+        <legend>目前用药</legend>
+    </fieldset>
+    <div class="tool-card-med">
+        <div class="layui-row layui-col-space15">
+            {{# layui.each(d.data.DrugList, function(drugindex, drugitem){ }}
+            <div class="layui-col-md2">
+                <div class="layui-card tool-med-border">
+                    {{# if (drugitem.LongActingDrugFlagCode==1){ }}
+                    <div class="layui-card-header">
+                        <span>{{ drugitem.Sort }}</span>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-danger med-sort">L</button>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>代码</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>规格/单位</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>频率</span></div>
+                            <div class="layui-col-md7" style="text-align: left">
+                                <span>{{ drugitem.LongActingDrugFrequency}}</span>
+                                {{# if(drugitem.LongActingDrugFrequencyUnitCode=='02'){ }}
+                                <span>次/月</span>
+                                {{#  } else{ }}
+                                <span>次/周</span>
+                                {{#  }; }}
+                            </div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>次剂量</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.LongActingDrugDose}}</span></div>
+                        </div>
+                    </div>
+                    {{# } else { }}
+                    <div class="layui-card-header">
+                        <span>{{ drugitem.Sort }}</span>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal med-sort">N</button>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>代码</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>规格/单位</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>早/中/晚</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.NonLongActingDrugDoseMorning }}/{{ drugitem.NonLongActingDrugDoseNoon }}/{{ drugitem.NonLongActingDrugDoseEvening }}</span></div>
+                        </div>
+                        <div class="layui-row"><br/></div>
+                    </div>
+                    {{# } }}
+                </div>
+            </div>
+            {{#  }); }}
+        </div>
+    </div>
+    {{# }; }}
+
+</script>
+
+<script type="text/html" id="gwdischargetpl">
+    <div class="basic tool-card-border" style="margin-left: 15px">
+        {{# for(var key in d.infoMap){ }}
+        <div class="layui-inline">
+            <label class="layui-form-label">{{ d.infoMap[key] }}</label>
+            <div class="layui-input-inline">
+                {{# if (null == d.data[key]){ d.data[key]=''} }}
+                <input type="text" value="{{ d.data[key] }}" class="layui-input" readonly="true" />
+            </div>
+        </div>
+        {{# }; }}
+    </div>
+    {{# if (null != d.data.DrugList){ }}
+    <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+        <legend>目前用药</legend>
+    </fieldset>
+    <div class="tool-card-med">
+        <div class="layui-row layui-col-space15">
+            {{# layui.each(d.data.DrugList, function(drugindex, drugitem){ }}
+            <div class="layui-col-md2">
+                <div class="layui-card tool-med-border">
+                    {{# if (drugitem.LongActingDrugFlagCode==1){ }}
+                    <div class="layui-card-header">
+                        <span>{{ drugitem.Sort }}</span>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-danger med-sort">L</button>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>代码</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>规格/单位</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>频率</span></div>
+                            <div class="layui-col-md7" style="text-align: left">
+                                <span>{{ drugitem.LongActingDrugFrequency}}</span>
+                                {{# if(drugitem.LongActingDrugFrequencyUnitCode=='02'){ }}
+                                <span>次/月</span>
+                                {{#  } else{ }}
+                                <span>次/周</span>
+                                {{#  }; }}
+                            </div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>次剂量</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.LongActingDrugDose}}</span></div>
+                        </div>
+                    </div>
+                    {{# } else { }}
+                    <div class="layui-card-header">
+                        <span>{{ drugitem.Sort }}</span>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal med-sort">N</button>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>代码</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>规格/单位</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>早/中/晚</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.NonLongActingDrugDoseMorning }}/{{ drugitem.NonLongActingDrugDoseNoon }}/{{ drugitem.NonLongActingDrugDoseEvening }}</span></div>
+                        </div>
+                        <div class="layui-row"><br/></div>
+                    </div>
+                    {{# } }}
+                </div>
+            </div>
+            {{#  }); }}
+        </div>
+    </div>
+    {{# }; }}
+    {{# if (null != d.data.GuideDrugList){ }}
+    <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+        <legend>指导用药</legend>
+    </fieldset>
+    <div class="tool-card-med">
+        <div class="layui-row layui-col-space15">
+            {{# layui.each(d.data.GuideDrugList, function(drugindex, drugitem){ }}
+            <div class="layui-col-md2">
+                <div class="layui-card tool-med-border">
+                    {{# if (drugitem.LongActingDrugFlagCode==1){ }}
+                    <div class="layui-card-header">
+                        <span>{{ drugitem.Sort }}</span>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-danger med-sort">L</button>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>代码</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>规格/单位</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>频率</span></div>
+                            <div class="layui-col-md7" style="text-align: left">
+                                <span>{{ drugitem.LongActingDrugFrequency}}</span>
+                                {{# if(drugitem.LongActingDrugFrequencyUnitCode=='02'){ }}
+                                <span>次/月</span>
+                                {{#  } else{ }}
+                                <span>次/周</span>
+                                {{#  }; }}
+                            </div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>次剂量</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.LongActingDrugDose}}</span></div>
+                        </div>
+                    </div>
+                    {{# } else { }}
+                    <div class="layui-card-header">
+                        <span>{{ drugitem.Sort }}</span>
+                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal med-sort">N</button>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>代码</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>规格/单位</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md5" style="text-align: left"><span>早/中/晚</span></div>
+                            <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.NonLongActingDrugDoseMorning }}/{{ drugitem.NonLongActingDrugDoseNoon }}/{{ drugitem.NonLongActingDrugDoseEvening }}</span></div>
+                        </div>
+                        <div class="layui-row"><br/></div>
+                    </div>
+                    {{# } }}
+                </div>
+            </div>
+            {{#  }); }}
+        </div>
+    </div>
+    {{# }; }}
+
+</script>
+
+<script type="text/html" id="gwemerdealtpl">
+    <div class="basic tool-card-border" style="margin-left: 15px">
+        {{# for(var key in d.infoMap){ }}
+        <div class="layui-inline">
+            <label class="layui-form-label">{{ d.infoMap[key] }}</label>
+            <div class="layui-input-inline">
+                {{# if (null == d.data[key]){ d.data[key]=''} }}
+                <input type="text" value="{{ d.data[key] }}" class="layui-input" readonly="true" />
+            </div>
+        </div>
+        {{# }; }}
+    </div>
+</script>
+
+<script type="text/html" id="gwreportpattpl">
+    {{# layui.each(d.data.DiseaseInfoList, function(index, item){ }}
+    <div class="layui-colla-item">
+        <!--手风琴标题-->
+        <h2 class="layui-colla-title">
+            <span>{{ item.DiagnoseTime }}</span>
+            <span>{{ item.DiseaseCode }}</span>
+            <span>{{ item.PsychogenyPastRiskCode }}</span>
+        </h2>
+        <div class="layui-colla-content">
+            <div class="basic tool-card-border" style="margin-top: 15px;margin-left: 15px">
+                {{#  for(var key in d.infoMap){ }}
+                <div class="layui-inline">
+                    <label class="layui-form-label">{{ d.infoMap[key] }}</label>
+                    <div class="layui-input-inline" >
+                        {{# if (null == item[key]){ item[key]=''} }}
+                        <input type="text" value="{{ item[key] }}" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                {{#  }; }}
+            </div>
+
+            {{# if (null != item.DrugList){ }}
+            <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                <legend>目前用药</legend>
+            </fieldset>
+            <div class="tool-card-med">
+                <div class="layui-row layui-col-space15">
+                    {{# layui.each(item.DrugList, function(drugindex, drugitem){ }}
+                    <div class="layui-col-md2">
+                        <div class="layui-card tool-med-border">
+                            {{# if (drugitem.LongActingDrugFlagCode==1){ }}
+                            <div class="layui-card-header">
+                                <span>{{ drugitem.Sort }}</span>
+                                <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-danger med-sort">L</button>
+                            </div>
+                            <div class="layui-card-body tool-med-body">
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>代码</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>规格/单位</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>频率</span></div>
+                                    <div class="layui-col-md7" style="text-align: left">
+                                        <span>{{ drugitem.LongActingDrugFrequency}}</span>
+                                        {{# if(drugitem.LongActingDrugFrequencyUnitCode=='02'){ }}
+                                        <span>次/月</span>
+                                        {{#  } else{ }}
+                                        <span>次/周</span>
+                                        {{#  }; }}
+                                    </div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>次剂量</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.LongActingDrugDose}}</span></div>
+                                </div>
+                            </div>
+                            {{# } else { }}
+                            <div class="layui-card-header">
+                                <span>{{ drugitem.Sort }}</span>
+                                <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal med-sort">N</button>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-row">
+                                    <div class="layui-col-md4" style="text-align: left"><span>代码</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md4" style="text-align: left"><span>规格/单位</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md4" style="text-align: left"><span>早/中/晚</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.NonLongActingDrugDoseMorning }}/{{ drugitem.NonLongActingDrugDoseNoon }}/{{ drugitem.NonLongActingDrugDoseEvening }}</span></div>
+                                </div>
+                                <div class="layui-row">
+                                    <label class="layui-col-md4">早/中/晚</label>
+                                    <label class="layui-col-md8">{{ drugitem.NonLongActingDrugDoseMorning }}/{{ drugitem.NonLongActingDrugDoseNoon }}/{{ drugitem.NonLongActingDrugDoseEvening }}</label>
+                                </div>
+                            </div>
+                            {{# } }}
+                        </div>
+                    </div>
+                    {{#  }); }}
+                </div>
+            </div>
+            {{# }; }}
+        </div>
+    </div>
+    {{#  }); }}
+</script>
+
+<script type="text/html" id="gwdischargepattpl">
+    {{# layui.each(d.data.TreatmentInfoList, function(index, item){ }}
+    <div class="layui-colla-item">
+        <!--手风琴标题-->
+        <h2 class="layui-colla-title">
+            <span>{{ item.AdmissionDate }}</span>
+            <span>{{ item.DischargeDate }}</span>
+            <span>{{ item.DiseaseCode }}</span>
+            <span>{{ item.PsychogenyPastRiskCode }}</span>
+        </h2>
+        <div class="layui-colla-content">
+            <div class="basic tool-card-border" style="margin-top: 15px;margin-left: 15px">
+                {{#  for(var key in d.infoMap){ }}
+                <div class="layui-inline">
+                    <label class="layui-form-label">{{ d.infoMap[key] }}</label>
+                    <div class="layui-input-inline" >
+                        {{# if (null == item[key]){ item[key]=''} }}
+                        <input type="text" value="{{ item[key] }}" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                {{#  }; }}
+            </div>
+
+            {{# if (null != item.DrugList){ }}
+            <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                <legend>目前用药</legend>
+            </fieldset>
+            <div class="tool-card-med">
+                <div class="layui-row layui-col-space15">
+                    {{# layui.each(item.DrugList, function(drugindex, drugitem){ }}
+                    <div class="layui-col-md2">
+                        <div class="layui-card tool-med-border">
+                            {{# if (drugitem.LongActingDrugFlagCode==1){ }}
+                            <div class="layui-card-header">
+                                <span>{{ drugitem.Sort }}</span>
+                                <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-danger med-sort">L</button>
+                            </div>
+                            <div class="layui-card-body tool-med-body">
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>代码</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>规格/单位</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>频率</span></div>
+                                    <div class="layui-col-md7" style="text-align: left">
+                                        <span>{{ drugitem.LongActingDrugFrequency}}</span>
+                                        {{# if(drugitem.LongActingDrugFrequencyUnitCode=='02'){ }}
+                                        <span>次/月</span>
+                                        {{#  } else{ }}
+                                        <span>次/周</span>
+                                        {{#  }; }}
+                                    </div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>次剂量</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.LongActingDrugDose}}</span></div>
+                                </div>
+                            </div>
+                            {{# } else { }}
+                            <div class="layui-card-header">
+                                <span>{{ drugitem.Sort }}</span>
+                                <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal med-sort">N</button>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-row">
+                                    <div class="layui-col-md4" style="text-align: left"><span>代码</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md4" style="text-align: left"><span>规格/单位</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md4" style="text-align: left"><span>早/中/晚</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.NonLongActingDrugDoseMorning }}/{{ drugitem.NonLongActingDrugDoseNoon }}/{{ drugitem.NonLongActingDrugDoseEvening }}</span></div>
+                                </div>
+                                <div class="layui-row">
+                                    <label class="layui-col-md4">早/中/晚</label>
+                                    <label class="layui-col-md8">{{ drugitem.NonLongActingDrugDoseMorning }}/{{ drugitem.NonLongActingDrugDoseNoon }}/{{ drugitem.NonLongActingDrugDoseEvening }}</label>
+                                </div>
+                            </div>
+                            {{# } }}
+                        </div>
+                    </div>
+                    {{#  }); }}
+                </div>
+            </div>
+            {{# }; }}
+            {{# if (null != item.GuideDrugList){ }}
+            <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                <legend>指导用药</legend>
+            </fieldset>
+            <div class="tool-card-med">
+                <div class="layui-row layui-col-space15">
+                    {{# layui.each(item.GuideDrugList, function(drugindex, drugitem){ }}
+                    <div class="layui-col-md2">
+                        <div class="layui-card tool-med-border">
+                            {{# if (drugitem.LongActingDrugFlagCode==1){ }}
+                            <div class="layui-card-header">
+                                <span>{{ drugitem.Sort }}</span>
+                                <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-danger med-sort">L</button>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>代码</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>规格/单位</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>频率</span></div>
+                                    <div class="layui-col-md7" style="text-align: left">
+                                        <span>{{ drugitem.LongActingDrugFrequency}}</span>
+                                        {{# if(drugitem.LongActingDrugFrequencyUnitCode=='02'){ }}
+                                        <span>次/月</span>
+                                        {{#  } else{ }}
+                                        <span>次/周</span>
+                                        {{#  }; }}
+                                    </div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>次剂量</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.LongActingDrugDose}}</span></div>
+                                </div>
+                            </div>
+                            {{# } else { }}
+                            <div class="layui-card-header">
+                                <span>{{ drugitem.Sort }}</span>
+                                <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal med-sort">N</button>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>代码</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugCode }}</span></div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>规格/单位</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.DrugSpecifications}}/{{ drugitem.DrugDoseCode}}</span></div>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md5" style="text-align: left"><span>早/中/晚</span></div>
+                                    <div class="layui-col-md7" style="text-align: left"><span>{{ drugitem.NonLongActingDrugDoseMorning }}/{{ drugitem.NonLongActingDrugDoseNoon }}/{{ drugitem.NonLongActingDrugDoseEvening }}</span></div>
+                                </div>
+                                <div class="layui-row"><br/></div>
+                            </div>
+                            {{# } }}
+                        </div>
+                    </div>
+                    {{#  }); }}
+                </div>
+            </div>
+            {{# }; }}
+        </div>
+    </div>
+    {{#  }); }}
+</script>
+
+<script type="text/html" id="gwemerdealpattpl">
+    {{# layui.each(d.data.EmergencyInfoList, function(index, item){ }}
+    <div class="layui-colla-item">
+        <!--手风琴标题-->
+        <h2 class="layui-colla-title">
+            <span>{{ item.DisposalStartTime  }}</span>
+            <span>{{ item.DisposalEndTime  }}</span>
+            {{# if (null != item.DiagnosticConfirmedCode){ }}
+            <span>{{ item.DiagnosticConfirmedCode }}</span>
+            {{# }; if (null != item.DiagnosticSuspectedCode){ }}
+            <span>{{ item.DiagnosticSuspectedCode  }}</span>
+            {{# }; }}
+        </h2>
+        <div class="layui-colla-content">
+            <div class="basic tool-card-border" style="margin-top: 15px;margin-left: 15px">
+                {{#  for(var key in d.infoMap){ }}
+                <div class="layui-inline">
+                    <label class="layui-form-label">{{ d.infoMap[key] }}</label>
+                    <div class="layui-input-inline" >
+                        {{# if (null == item[key]){ item[key]=''} }}
+                        <input type="text" value="{{ item[key] }}" class="layui-input" readonly="true" />
+                    </div>
+                </div>
+                {{#  }; }}
+            </div>
+        </div>
+    </div>
+    {{#  }); }}
+</script>
+
+
+<script>
+    layui.use('work/gwinfoquery', layui.factory('work/gwinfoquery'));
+</script>

@@ -1,0 +1,110 @@
+<div class="layui-fluid">
+    <fieldset class="layui-elem-field">
+        <legend>年审查询</legend>
+        <div class="layui-field-box">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" id="btn-query-InspectYear">查询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <fieldset class="layui-elem-field">
+            <legend>截止目前在册患者年审人数三年分布</legend>
+            <table id="SyncMoveOutPatInfo1" lay-filter="SyncMoveOutPatInfo1" class="layui-table">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">年份</th>
+                        <th style="text-align: center;"><span class="one"></span></th>
+                        <th style="text-align: center;"><span class="two"></span></th>
+                        <th style="text-align: center;"><span class="there"></span></th>
+                        <th style="text-align: center;">其它年份</th>
+                        <th style="text-align: center;">无年审年份</th>
+                    </tr>
+                </thead>
+                <tbody id="InspectYears">
+                    <tr>
+                        <td rowspan="2" style="text-align: center;">人数</td>
+                        <td rowspan="2" style="text-align: center;"><span id="data0">0</span></td>
+                        <td style="text-align: center;"><span id="data1">0</span></td>
+                        <td style="text-align: center;"><span id="data2">0</span></td>
+                        <td style="text-align: center;"><span id="seven">0</span></td>
+                        <td style="text-align: center;"><span id="eight">0</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: right;">本年未完成年审人数合计:<span id="noyear"
+                                style="color: red">0</span></td>
+                        <td style="text-align: center;"><span 
+                                style="cursor:pointer;text-decoration:underline"
+                                id="btn-query-InspectYearDetails2">查看年审问题详情</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <fieldset class="layui-elem-field">
+                <legend>截止目前删除患者年审人数三年分布</legend>
+                <table id="del" lay-filter="del" class="layui-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">年份</th>
+                            <th style="text-align: center;"><span class="one"></span></th>
+                            <th style="text-align: center;"><span class="two"></span></th>
+                            <th style="text-align: center;"><span class="there"></span></th>
+                            <th style="text-align: center;">其它年份</th>
+                            <th style="text-align: center;">无年审年份</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center;">人数</td>
+                            <td style="text-align: center;"><span id="data4">0</span></td>
+                            <td style="text-align: center;"><span id="data5">0</span></td>
+                            <td style="text-align: center;"><span id="data6">0</span></td>
+                            <td style="text-align: center;"><span id="data7">0</span></td>
+                            <td style="text-align: center;"><span id="data8">0</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>截止目前死亡患者年审人数三年分布</legend>
+                <table id="death" lay-filter="death" class="layui-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">年份</th>
+                            <th style="text-align: center;"><span class="one"></span></th>
+                            <th style="text-align: center;"><span class="two"></span></th>
+                            <th style="text-align: center;"><span class="there"></span></th>
+                            <th style="text-align: center;">其它年份</th>
+                            <th style="text-align: center;">无年审年份</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center;">人数</td>
+                            <td style="text-align: center;"><span id="data9">0</span></td>
+                            <td style="text-align: center;"><span id="data10">0</span></td>
+                            <td style="text-align: center;"><span id="data11">0</span></td>
+                            <td style="text-align: center;"><span id="data12">0</span></td>
+                            <td style="text-align: center;"><span id="data13">0</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            <div id="show">
+                <fieldset class="layui-elem-field">
+                    <legend>年审问题详情</legend>
+                    <table id="InspectYearDetails" lay-filter="InspectYearDetails">
+
+                    </table>
+                </fieldset>
+            </div>
+        </fieldset>
+
+    </fieldset>
+</div>
+
+
+<script>
+    layui.use('work/viewyearinfo', layui.factory('work/viewyearinfo'));
+</script>

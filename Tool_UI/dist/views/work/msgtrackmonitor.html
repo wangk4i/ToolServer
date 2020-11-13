@@ -1,0 +1,188 @@
+<div class="layui-fluid msgtrackmonitor" style="padding: 20px 30px 0px 30px;">
+    <div class="layui-tab layui-tab-card">
+        <ul class="layui-tab-title">
+            <li class="layui-this">消息概况监控</li>
+            <li>消息实时清单</li>
+            <li>消息执行情况</li>
+        </ul>
+
+        <div class="layui-tab-content">
+
+
+            <div class="layui-tab-item layui-show">
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="track_msgOverview_query">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="track_msgOverview_view"></div>
+
+            </div>
+
+            <div class="layui-tab-item">
+                内容2
+            </div>
+
+            <div class="layui-tab-item">
+
+                <div class="layui-field-box">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">消息主键</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id='track_msgId' name="track_msgId" placeholder="请输入消息主键" lay-verify="required"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit lay-filter="track_msgLocation_query">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="width: 98.5%;">
+                    <legend>消息执行情况</legend>
+                </fieldset>
+                <div id="track_msgLocation_view"></div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/html" id="MsgOverviewTpl">
+    <table class="layui-table" lay-skin="line">
+        <colgroup>
+            <col width="500">
+            <col width="300">
+            <col>
+        </colgroup>
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>国网交换文件生成</td>
+            <td>{{ d.data.buildNum }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>交换文件等待发送</td>
+            <td>{{ d.data.sendingNum }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>等待国网交换结果</td>
+            <td>{{ d.data.waitingNum }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>交换文件等待处理</td>
+            <td>{{ d.data.receiveNum }}</td>
+            <td>d</td>
+        </tr>
+        <tr>
+            <td>待处理交换文件快照</td>
+            <td>{{ d.data.backupNum }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>交换工具待处理文件</td>
+            <td>{{ d.data.p51boxNum }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>已处理交换文件</td>
+            <td>{{ d.data.waitReturnNum }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>交换文件处理完成</td>
+            <td>{{ d.data.doneNum }}</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>已确认传回交换文件</td>
+            <td>{{ d.data.finishNum }}</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>交换消息入库完成</td>
+            <td>{{ d.data.messageViewNum }}</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="layui-table" lay-skin="line">
+        <colgroup>
+            <col width="500">
+            <col width="400">
+            <col>
+        </colgroup>
+        <thead>
+        <tr>
+            <th></th>
+            <th>时间</th>
+            <th>延迟</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>最早文件</th>
+            <th>{{ d.data.earliestBuildTime }}</th>
+            <th>{{ d.data.earliestDelay }}</th>
+        </tr>
+        <tr>
+            <th>最晚文件</th>
+            <th>{{ d.data.latestBuildTime }}</th>
+            <th>{{ d.data.latestDelay }}</th>
+        </tr>
+        </tbody>
+    </table>
+</script>
+<script type="text/html" id="MsgLocationTpl">
+    <table class="layui-table" lay-even="" lay-skin="nob">
+        <colgroup>
+            <col width="300">
+            <col>
+        </colgroup>
+        <thead>
+        <tr>
+            <th>文件ID</th>
+            <th>{{ d.data.hasMsgFileValue }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>文件ID名称</td>
+            <td>{{ d.data.MsgFileID }}</td>
+        </tr>
+        <tr>
+            <td>文件生成时间</td>
+            <td>{{ d.data.BuildTime }}</td>
+        </tr>
+        <tr>
+            <td>延迟</td>
+            <td>{{ d.data.delay }}</td>
+        </tr>
+        <tr>
+            <td>执行状态</td>
+            <td>{{ d.data.runningState }}</td>
+        </tr>
+        </tbody>
+    </table>
+</script>
+
+<script>
+    layui.use('work/msgtrackmonitor', layui.factory('work/msgtrackmonitor'));
+</script>

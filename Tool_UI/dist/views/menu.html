@@ -1,0 +1,121 @@
+<script type="text/html" template lay-url="../mockup/GetMenu.json"
+lay-done="layui.element.render('nav', 'layadmin-system-side-menu');" id="TPL_layout">
+    <div class="layui-logo" lay-href="">
+        <span id="hyd_user_info">{{ layui.setter.name || 'layuiAdmin' }}</span>
+    </div>
+    <div class="layui-tab layui-tab-brief" style="margin-top:50px;" lay-filter="TabBrief">
+        <div class="layui-tab-content" style="padding: 0px;">
+            <ul class="layui-nav layui-nav-tree" style="margin-top: 0px;"
+                lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
+
+
+                {{# 
+                    var path =  layui.router().path
+                    ,pathURL = layui.admin.correctRouter(path.join('/'))
+                    ,dataName = layui.setter.response.dataName;
+
+                    layui.each(d.data, function(index, item){ 
+                        var hasChildren = typeof item.list === 'object' && item.list.length > 0
+                        ,classSelected = function(){
+                            var match = path[0] == item.name || (index == 0 && !path[0]) 
+                            || (item.jump && pathURL == layui.admin.correctRouter(item.jump)) || item.spread;
+                            if(match){
+                                return hasChildren ? 'layui-nav-itemed' : 'layui-this';
+                            }
+                            return '';
+                        }
+                        ,url = (item.jump && typeof item.jump === 'string') ? item.jump : item.name;
+            }}
+            <li data-name="{{ item.name || '' }}" data-jump="{{ item.jump || '' }}" class="layui-nav-item">
+                <!-- {{# item.jump == ' ' ? console.log(true) :console.log(false) ;}} -->
+                <!-- {{#  console.log(item.jump.length > 0 ? 1 : 0)}} -->
+
+                {{# var jump = item.jump.length }}
+                {{# if(jump > 0 ){ }}
+                <a href="javascript:;" class="hyd-a-hover"
+                    {{ hasChildren ? '' : 'lay-href="'+ url +'/title='+ item.title +'"' }}
+                    lay-tips="{{ item.title }}" lay-href="{{ item.jump + "/title=" + item.title }}"
+                    lay-direction="2">
+                    <i class="iconfont {{ item.icon }}"></i>
+                    <cite>{{ item.title }}</cite>
+                </a>
+                {{# } else { }}
+                <a href="javascript:;" class="hyd-a-hover"
+                    {{ hasChildren ? '' : 'lay-href="'+ url +'/title='+ item.title +'"' }}
+                    lay-tips="{{ item.title }}" lay-direction="2">
+                    <i class="iconfont {{ item.icon }}"></i>
+                    <cite>{{ item.title }}</cite>
+                </a>
+                {{# } }}
+
+
+                {{# if(hasChildren){ }}
+                <dl class="layui-nav-child">
+                    {{# layui.each(item.list, function(index2, item2){ 
+                                var hasChildren2 = typeof item2.list == 'object' && item2.list.length > 0
+                                ,classSelected2 = function(){
+                                    var match = (path[0] == item.name && path[1] == item2.name) 
+                                    || (item2.jump && pathURL == layui.admin.correctRouter(item2.jump)) || item2.spread;
+                                    if(match){
+                                        return hasChildren2 ? 'layui-nav-itemed' : 'layui-this';
+                                    }
+                                    return '';
+                                }
+                                ,url2 = (item2.jump && typeof item2.jump === 'string') 
+                                    ? item2.jump 
+                                : [item.name, item2.name, ''].join('/');
+                            }}
+                    <dd data-name="{{ item2.name || '' }}" data-jump="{{ item2.jump || '' }}"
+                        {{ classSelected2() ? ('class="'+ classSelected2() +'"') : '' }}>
+                        <a href="javascript:;"
+                            {{ hasChildren2 ? '' : 'lay-href="'+ url2 +'/title='+ item2.title +'"' }}>{{ item2.title }}</a>
+                        {{# if(hasChildren2){ }}
+                        <dl class="layui-nav-child">
+                            {{# layui.each(item2.list, function(index3, item3){ 
+                                                var match = (path[0] == item.name && path[1] == item2.name && path[2] == item3.name) 
+                                                || (item3.jump && pathURL == layui.admin.correctRouter(item3.jump))
+                                                ,url3 = (item3.jump && typeof item3.jump === 'string') 
+                                                    ? item3.jump 
+                                                : [item.name, item2.name, item3.name].join('/')
+                                            }}
+                            <dd data-name="{{ item3.name || '' }}" data-jump="{{ item3.jump || '' }}"
+                                {{ match ? 'class="layui-this"' : '' }}>
+                                <a href="javascript:;" lay-href="{{ url3 }}"
+                                    {{ item3.iframe ? 'lay-iframe="true"' : '' }}>{{ item3.title }}</a>
+                            </dd>
+                            {{# }); }}
+                        </dl>
+                        {{# } }}
+                    </dd>
+                    {{# }); }}
+                </dl>
+                {{# } }}
+            </li>
+            {{# }); }}
+
+
+            </ul>
+        </div>
+    </div>
+</script>
+<script>
+    layui.define(function (exports) {
+
+        layui.use(['laydate', 'table', 'element', 'hdk', 'form', 'admin', 'hydLayer', 'element', 'appconfig'], function () {
+            var $ = layui.$
+                , laydate = layui.laydate
+                , router = layui.router()
+                , table = layui.table
+                , setter = layui.setter
+                , form = layui.form
+                , element = layui.element
+                , hdk = layui.hdk
+                , admin = layui.admin
+                , hydLayer = layui.hydLayer
+                , appconfig = layui.appconfig;
+
+        });
+        exports('menu', {})
+    });
+</script>
+
